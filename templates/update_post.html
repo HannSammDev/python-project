@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Post - Sports Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center mt-4">Edit Your Post</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 " style="background-color: #f7f2f2;">
+                <form action="{{ url_for('update_post', post_id=post.id) }}" method="POST" enctype="multipart/form-data">
+                    
+                    <!-- Title Field -->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Title</label>
+                        <input type="text" class="form-control" name="title" value="{{ post.title }}" required>
+                    </div>
+
+                    <!-- Content Field -->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Content</label>
+                        <textarea class="form-control" name="content" rows="5" required>{{ post.content }}</textarea>
+                    </div>
+
+                    <!-- Current Image Preview -->
+                    {% if post.image %}
+                    <div class="mb-3 text-center">
+                        <label class="form-label text-dark">Current Image</label>
+                        <br>
+                        <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="Post Image" class="img-fluid rounded" style="max-width: 100%;">
+                    </div>
+                    {% endif %}
+
+                    <!-- Upload New Image -->
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Upload New Image (Optional)</label>
+                        <input type="file" class="form-control" name="image">
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('home') }}" class="btn btn-link text-danger " style="text-decoration: none;">Cancel</a>
+                        <button type="submit" class="btn btn-light">Update Post</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

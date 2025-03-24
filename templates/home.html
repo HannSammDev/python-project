@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - Sports Blog{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Latest Sports Posts</h2>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4">
+            <div class="card mb-4 bg-light shadow-sm" style="border-color:  rgb(84, 1, 87);">
+                {% if post.image %}
+                <img src="{{ url_for('static', filename='images/' + post.image) }}"  class="card-img-top" alt="Post Image">
+                {% endif %}
+                <div class="card-body " style="background-color: black;">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content[:100] }}...</p>
+                    <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn btn-link btn-sm text-white" >Edit</a>
+                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-link text-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

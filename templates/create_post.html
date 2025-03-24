@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Create Post - Sports Blog{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Create a New Post</h2>
+<div class="row justify-content-center">
+    <div class="col-md-6 shadow-sm p-3" style="background-color: #f7f2f2;">
+        <form action="{{ url_for('create_post') }}" method="POST" enctype="multipart/form-data"
+            style="background-color: transparent;">
+            <div class="mb-3">
+                <label class="form-label text-dark">Title</label>
+                <input type="text" class="form-control border" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-dark">Content</label>
+                <textarea class="form-control" name="content" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-dark">Upload Image</label>
+                <input type="file" class="form-control" name="image">
+            </div>
+            <button type="submit" class="btn btn-success"
+                style="background: linear-gradient(to right, black, rgb(49, 48, 49));">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
